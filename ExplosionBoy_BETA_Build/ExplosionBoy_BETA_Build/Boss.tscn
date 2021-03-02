@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Boss.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/Boss/boss clone-2.png.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/Boss/boss clone-1.png.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 3.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 54.0667
+height = 79.725
+
+[node name="Boss" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -4.18378, 11.7519 )
+scale = Vector2( 4.21695, 4.21695 )
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 4.45453, -53.8174 )
+shape = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 112, -58.3163 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 2.93999, 72.1509 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( -101.663, -75.5578 )
+
+[node name="Position2D4" type="Position2D" parent="."]
+position = Vector2( 1.77072, -174.609 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

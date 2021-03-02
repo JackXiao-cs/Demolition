@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprite/EnemyLooker/tile000.png" type="Texture" id=1]
+[ext_resource path="res://Sprite/EnemyLooker/tile004.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/EnemyLooker/tile002.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/EnemyLooker/tile001.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/EnemyLooker/tile003.png" type="Texture" id=5]
+[ext_resource path="res://Enemy_Looker.gd" type="Script" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21.2949, 72.8116 )
+
+[node name="Enemy_Looker" type="KinematicBody2D"]
+position = Vector2( -30.4825, 40.9937 )
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 30.2723, -40.6783 )
+scale = Vector2( 5.87457, 5.74975 )
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 30.0621, -21.2327 )
+shape = SubResource( 2 )

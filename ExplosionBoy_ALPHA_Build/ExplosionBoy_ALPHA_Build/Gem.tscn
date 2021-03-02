@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Gem.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/Item/Gem.png" type="Texture" id=2]
+[ext_resource path="res://Sound/coin02.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 8 )
+
+[node name="Gem" type="Area2D"]
+collision_mask = 2147483649
+script = ExtResource( 1 )
+target_stage = "res://StageOne.tscn"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="body_entered" from="." to="." method="_on_Gem_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
